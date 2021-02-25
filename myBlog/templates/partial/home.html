@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <title>Грамматика</title>
+  <meta name="description" content="{{ desc }}"/>
+  <meta name="keywords" content="{{ key }}"/>
+{% endblock %}
+
+{% block body %}
+  <h1>Главная</h1>
+
+<!-- условия для отображения постов-->
+  {% if not posts %}
+    <b>Статьи не найдены</b>
+  {% else %}
+    {% for obj in posts %}
+    <a href="{{ obj.get_absolute_url }}">
+      <b>
+        {{ obj.title }} <!-- отображение заголовка -->
+      </b>
+    </a>
+    <!-- <img src="{{ obj.image.url }}" alt=""> -->
+    <p>
+      {{ obj.content|truncatechars:70 }} <!-- отображение контента с обрезкой в 70 символов -->
+    </p>
+    <span>
+      {{ obj.timestamp }} <!-- отображение даты публикации - убрать -->
+    </span>
+  <br>
+  <br>
+  <br>
+    {% endfor %}
+  {% endif %}
+
+<!-- условия для пагинации -->
+  {% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">Назад</a>
+  {% endif %}
+    <span>{{ posts.number }} / {{ posts.num_pages }}</span>
+  {% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}" >Вперед</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% block title %}Грамматика{% endblock %}
+
+{% block content %}
+    {% for grammar in grammar %}
+        <h2><a href="{{ grammar.get_absolute_url }}">{{ grammar.title }}</a></h2>
+        <p>{{ grammar.text }}</p>
+    {% endfor %}
+
+{% endblock %}
