@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-# чтото
+# чтото такое
 class GrammConfig(AppConfig):
     name = 'gramm'
